@@ -1,0 +1,2 @@
+class TeetimesController < ApplicationController
+end
