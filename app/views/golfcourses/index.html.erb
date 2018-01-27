@@ -1,1 +1,9 @@
-<h1>jag är index</h1>
+<h1>This is the golfcours index<h1>
+
+  <% @request["data"].each do |course| %>
+    <%= "CourseName #{course['courseName']}"%> <br>
+    <% course["teeTimes"].each do |tee| %>
+      <%= "teeTime #{tee['teeTime']}"%><br>
+      <%= tee["purchase"]["price"]%> <br>
+    <%end%>
+  <%end%>
