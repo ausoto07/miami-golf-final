@@ -10,10 +10,10 @@
   <br>
   <br>
 
-  <% @request["data"].each do |course| %>
+  <% @request["data"].each do |course| %> <br>
     <%= "CourseName #{course['courseName']}"%> <br>
-    <% course["teeTimes"].each do |tee| %> <br>
-     <%= "teeTime #{tee['teeTime']}"%><br>
-      <%= tee["purchase"]["price"]%> <br>
-    <%end%>
+  <select><% course["teeTimes"].each do |tee| %> <br>
+    <option>  <%= tee["purchase"]["price"]%> <br>
+      <%= "teeTime #{tee['teeTime']}"%> </option><br>
+    <%end%></select>
   <%end%>
