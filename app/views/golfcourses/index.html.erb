@@ -1,9 +1,19 @@
 <h1>This is the golfcours index<h1>
 
+
+  <%= form_tag(root_path, method: "get") do %>
+    <%= label_tag(:q, "Select Teetime Dates:") %>
+    <%= date_field_tag(:usersdate) %> <!--- This users input should go as params[:usersdate] in the place of "Date=01%2F28%2F2018" in the url string--->
+    <%= submit_tag("Search") %>
+  <% end %>
+
+  <br>
+  <br>
+
   <% @request["data"].each do |course| %>
     <%= "CourseName #{course['courseName']}"%> <br>
-    <% course["teeTimes"].each do |tee| %>
-      <%= "teeTime #{tee['teeTime']}"%><br>
+    <% course["teeTimes"].each do |tee| %> <br>
+     <%= "teeTime #{tee['teeTime']}"%><br>
       <%= tee["purchase"]["price"]%> <br>
     <%end%>
   <%end%>
