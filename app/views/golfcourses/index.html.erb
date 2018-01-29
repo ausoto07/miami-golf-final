@@ -24,3 +24,23 @@
   </div>
 </div>
 
+
+
+
+
+  <%= form_tag(root_path, method: "get") do %>
+    <%= label_tag(:q, "Select Teetime Dates:") %>
+    <%= date_field_tag(:usersdate) %> <!--- This users input should go as params[:usersdate] in the place of "Date=01%2F28%2F2018" in the url string--->
+    <%= submit_tag("Search") %>
+  <% end %>
+
+  <br>
+  <br>
+
+  <% @request_tee_times["data"].each do |course| %> <br>
+    <%= "CourseName #{course['courseName']}"%> <br>
+  <select><% course["teeTimes"].each do |tee| %> <br>
+    <option>  <%= tee["purchase"]["price"]%> <br>
+      <%= "teeTime #{tee['teeTime']}"%> </option><br>
+    <%end%></select>
+  <%end%>
