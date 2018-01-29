@@ -37,7 +37,7 @@
   <br>
   <br>
 
-  <% @request["data"].each do |course| %> <br>
+  <% @request_tee_times["data"].each do |course| %> <br>
     <%= "CourseName #{course['courseName']}"%> <br>
   <select><% course["teeTimes"].each do |tee| %> <br>
     <option>  <%= tee["purchase"]["price"]%> <br>
