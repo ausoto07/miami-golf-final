@@ -37,11 +37,16 @@ $navbar-default-bg: #66ff33;
   margin: auto;
 }
 
+#map {
+  height: 290px !important;
+  top: 9px;
+
+}
 
 .jumbotron {
-  background-image: asset-url('3Golf.jpg');
+  background: asset-url('3Golf.jpg') no-repeat center center fixed;
   background-size: cover;
-  height: 550px;
+  height: 750px;
 
 }
 
