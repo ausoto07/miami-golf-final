@@ -1,5 +1,7 @@
 class TeeTimeApi
 
+  GOLFCOURSE_EMAILS = {'7072' =>'email address'}
+
   def self.get_tee_times(date)
     # date = if params[:usersdate] == nil then Date.today else params[:usersdate] end
 
