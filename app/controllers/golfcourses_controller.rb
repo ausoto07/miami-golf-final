@@ -5,8 +5,14 @@ class GolfcoursesController < ApplicationController
   end
 
   def send_booking_email
-    course_id = params['course_id'] #gets course_id from API
-    email = TeeTimeApi::GOLFCOURSE_EMAILS[course_id] #gets the email of the corresponding course by id.
+
+    course_id = params['hidden_golfcourse_id'] #gets course_id from API
+    @tee_time = params['teetime']
+    @name = params['name']
+    @email = params['email']
+    @telephone = params['telephone']
+
+    email = TeeTimeApi::GOLFCOURSE_EMAILS[course_id] #gets the email of the corresponding course by id. See TeeTimeApi class.
     TeetimeconfirmationMailer.send_booking_email(email).deliver_now
     redirect_to root_path
     return

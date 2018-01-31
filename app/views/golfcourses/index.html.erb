@@ -55,16 +55,16 @@
   <% @request_tee_times["data"].each do |course| %> <br>
     <%= "CourseName #{course['courseName']}"%> <br>
       <select>
-        <% course["teeTimes"].each do |tee| %> <br>
-          <option>
-            <%= tee["purchase"]["price"]%> <br>
-            <%= "teeTime #{tee['teeTime']}"%>
+        <% course["teeTimes"].each do |tee| %>
+          <option class='optionsss'>
+            <%= tee["purchase"]["price"]%> <%= " teeTime #{tee['teeTime']}"%>
+
           </option>
           <br>
         <%end%>
 
       </select>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn btn-primary book" data-toggle="modal" data-target="#exampleModal" course-id="<%=course['courseId']%>">
         Book
       </button>
     <!-- <%# link_to 'Book', book_path(course_id: course['courseId'])%> -->
@@ -84,22 +84,35 @@
           </button>
         </div>
         <div class="modal-body">
-          <%= form_tag("/search", method: "get") do %>
+          <%= form_tag("/book", method: "post") do %>
             <%= label_tag(:q, "Name:") %>
-            <%= text_field_tag(:q) %>
+            <%= text_field_tag(:name) %><br>
             <%= label_tag(:q, "Email:") %>
-            <%= text_field_tag(:q) %>
-            <%= label_tag(:q, "Telefon:") %>
-            <%= text_field_tag(:q) %>
+            <%= text_field_tag(:email) %><br>
+            <%= label_tag(:q, "Telephone:") %>
+            <%= text_field_tag(:telephone) %>
+            <%= label_tag(:q, "Teetime:") %>
+            <%= text_field_tag(:teetime) %>
+            <%= hidden_field_tag(:hidden_golfcourse_id) %>
             <%# submit_tag("Search") %>
-
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary reservation" >reserve</button>
         </div>
           <% end %>
       </div>
     </div>
   </div>
+
+
+<script type="text/javascript" >
+
+  $('.btn.btn-primary.book').on('click', function(){
+    var teetime = $(this).prev().children('option:selected').text().trim();
+    $('#teetime').val(teetime)
+    var courseId = $(this).attr('course-id');
+    $('#hidden_golfcourse_id').val(courseId);
+
+});
+</script>
