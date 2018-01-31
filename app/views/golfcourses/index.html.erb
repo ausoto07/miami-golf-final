@@ -23,20 +23,39 @@
       </script>
   </div>
 </div>
+<table class="table table-hover ">
+  <tbody>
+    <tr>
+      <th>
+      <%= form_tag(root_path, method: "get") do %>
+        <%= label_tag(:q, "Select Teetime Dates:") %>
+        <%= date_field_tag(:usersdate) %><!--- This users input should go as params[:usersdate] in the place of "Date=01%2F28%2F2018" in the url string--->
+        <%= submit_tag("Search") %>
+      <% end %>
+    </th>
+    </tr>
+    <tr>
+      <th>
+        Location
+      </th>
+      <th>
+        Teetime
+      </th>
+      <!-- table headers goes here -->
+    </tr>
 
-  <%= form_tag(root_path, method: "get") do %>
-    <%= label_tag(:q, "Select Teetime Dates:") %>
-    <%= date_field_tag(:usersdate) %> <!--- This users input should go as params[:usersdate] in the place of "Date=01%2F28%2F2018" in the url string--->
-    <%= submit_tag("Search") %>
-  <% end %>
-
-  <br>
-  <br>
-
-  <% @request_tee_times["data"].each do |course| %> <br>
-    <%= "CourseName #{course['courseName']}"%> <br>
-  <select><% course["teeTimes"].each do |tee| %> <br>
-    <option>  <%= tee["purchase"]["price"]%> <br>
-      <%= "teeTime #{tee['teeTime']}"%> </option><br>
-    <%end%></select>
-  <%end%>
+      <% @request_tee_times["data"].each do |course| %>
+      <tr>
+        <th>
+      <%= "CourseName #{course['courseName']}"%>
+    </th>
+    <th>
+      <select><% course["teeTimes"].each do |tee| %>
+      <option>  <%= tee["purchase"]["price"]%>
+        <%= "teeTime #{tee['teeTime']}"%> </option>
+      <%end%></select>
+      <%end%>
+    </th>
+    </tr>
+  </tbody>
+</table>
