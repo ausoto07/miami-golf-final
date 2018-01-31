@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
-
+gem "stripe"
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
