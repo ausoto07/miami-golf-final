@@ -1,3 +1,23 @@
+<!-- WeatherApi -->
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Description</th>
+    <th>Farenheit</th>
+    <th>Humidity</th>
+    <th>Wind Speed</th>
+  </tr>
+  <% @request_weather_forecast.each do |forecast| %>
+    <tr>
+    <td><%= Time.at(forecast["dt"]) %></td>
+    <td><%= forecast["weather"][0]["description"] %></td>
+    <td><%= forecast["main"]["temp"] %></td>
+    <td><%= forecast["main"]["humidity"] %></td>
+    <td><%= forecast["wind"]["speed"] %></td>
+    </tr>
+  <% end %>
+  </table>
+
 <div class="center jumbotron">
   <h1>MiamiGolf</h1>
   <%= link_to "Golf now","#", class: "btn btn-success btn-lg btn-xlarge" %>
@@ -26,12 +46,12 @@
 <table class="table table-hover ">
   <tbody>
     <tr>
-      <th>
-      <%= form_tag(root_path, method: "get") do %>
-        <%= label_tag(:q, "Select Teetime Dates:") %>
-        <%= date_field_tag(:usersdate) %><!--- This users input should go as params[:usersdate] in the place of "Date=01%2F28%2F2018" in the url string--->
-        <%= submit_tag("Search") %>
-      <% end %>
+      <th> 
+        <%= form_tag(root_path, method: "get") do %>
+    <%= label_tag(:q, "Select Teetime Dates:") %>
+    <%= date_field_tag(:usersdate) %>
+    <%= submit_tag("Search") %>
+  <% end %>
     </th>
     </tr>
     <tr>
@@ -42,20 +62,73 @@
         Teetime
       </th>
       <!-- table headers goes here -->
-    </tr>
-
-      <% @request_tee_times["data"].each do |course| %>
+    </tr>    
+      <% @request_tee_times["data"].each do |course| %> 
       <tr>
         <th>
-      <%= "CourseName #{course['courseName']}"%>
+    <%= "CourseName #{course['courseName']}"%> 
     </th>
     <th>
       <select><% course["teeTimes"].each do |tee| %>
-      <option>  <%= tee["purchase"]["price"]%>
-        <%= "teeTime #{tee['teeTime']}"%> </option>
+      <option class='optionsss'>  <%= tee["purchase"]["price"]%>
+        <%= " teeTime #{tee['teeTime']}"%> </option>
       <%end%></select>
-      <%end%>
+      <%end%>            
     </th>
     </tr>
   </tbody>
 </table>
+
+
+  <button type="button" class="btn btn-primary book" data-toggle="modal" data-target="#exampleModal" course-id="<%=course['courseId']%>">
+        Book
+      </button>
+    <!-- <%# link_to 'Book', book_path(course_id: course['courseId'])%> -->
+  <%end%>
+
+
+
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= form_tag("/book", method: "post") do %>
+            <%= label_tag(:q, "Name:") %>
+            <%= text_field_tag(:name) %><br>
+            <%= label_tag(:q, "Email:") %>
+            <%= text_field_tag(:email) %><br>
+            <%= label_tag(:q, "Telephone:") %>
+            <%= text_field_tag(:telephone) %>
+            <%= label_tag(:q, "Teetime:") %>
+            <%= text_field_tag(:teetime) %>
+            <%= hidden_field_tag(:hidden_golfcourse_id) %>
+            <%# submit_tag("Search") %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary reservation" >reserve</button>
+        </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript" >
+
+  $('.btn.btn-primary.book').on('click', function(){
+    var teetime = $(this).prev().children('option:selected').text().trim();
+    $('#teetime').val(teetime)
+    var courseId = $(this).attr('course-id');
+    $('#hidden_golfcourse_id').val(courseId);
+
+});
+</script>
