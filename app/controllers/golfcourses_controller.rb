@@ -13,7 +13,7 @@ class GolfcoursesController < ApplicationController
     @telephone = params['telephone']
 
     email = TeeTimeApi::GOLFCOURSE_EMAILS[course_id] #gets the email of the corresponding course by id. See TeeTimeApi class.
-    TeetimeconfirmationMailer.send_booking_email(email).deliver_now
+    TeetimeconfirmationMailer.send_booking_email(email, @tee_time, @name,@email, @telephone ).deliver_now
     redirect_to root_path
     return
   end
