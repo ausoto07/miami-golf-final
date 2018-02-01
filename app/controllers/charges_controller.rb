@@ -7,7 +7,7 @@ class ChargesController < ApplicationController
     @amount = 500
 
     customer = Stripe::Customer.create(
-      :email => params[:stripeEmail],
+      :email => params[:email],
       :source  => params[:stripeToken]
     )
 
@@ -20,7 +20,7 @@ class ChargesController < ApplicationController
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to new_charge_path
+    redirect_to booking_success_path
   end
 
 end

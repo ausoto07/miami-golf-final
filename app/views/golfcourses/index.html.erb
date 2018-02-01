@@ -46,7 +46,7 @@
 <table class="table table-hover ">
   <tbody>
     <tr>
-      <th> 
+      <th>
         <%= form_tag(root_path, method: "get") do %>
     <%= label_tag(:q, "Select Teetime Dates:") %>
     <%= date_field_tag(:usersdate) %>
@@ -62,29 +62,30 @@
         Teetime
       </th>
       <!-- table headers goes here -->
-    </tr>    
-      <% @request_tee_times["data"].each do |course| %> 
+    </tr>
+      <% @request_tee_times["data"].each do |course| %>
       <tr>
         <th>
-    <%= "CourseName #{course['courseName']}"%> 
+    <%= "CourseName #{course['courseName']}"%>
     </th>
     <th>
       <select><% course["teeTimes"].each do |tee| %>
       <option class='optionsss'>  <%= tee["purchase"]["price"]%>
         <%= " teeTime #{tee['teeTime']}"%> </option>
       <%end%></select>
-      <%end%>            
+
+      <button type="button" class="btn btn-primary book" data-toggle="modal" data-target="#exampleModal" course-id="<%=course['courseId']%>">
+            Book
+          </button>
+        <!-- <%# link_to 'Book', book_path(course_id: course['courseId'])%> -->
+      <%end%>
     </th>
     </tr>
   </tbody>
 </table>
 
 
-  <button type="button" class="btn btn-primary book" data-toggle="modal" data-target="#exampleModal" course-id="<%=course['courseId']%>">
-        Book
-      </button>
-    <!-- <%# link_to 'Book', book_path(course_id: course['courseId'])%> -->
-  <%end%>
+
 
 
 
@@ -100,7 +101,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <%= form_tag("/book", method: "post") do %>
+          <%= form_tag("/book", method: "post", id:"booking-form") do %>
             <%= label_tag(:q, "Name:") %>
             <%= text_field_tag(:name) %><br>
             <%= label_tag(:q, "Email:") %>
@@ -111,15 +112,40 @@
             <%= text_field_tag(:teetime) %>
             <%= hidden_field_tag(:hidden_golfcourse_id) %>
             <%# submit_tag("Search") %>
+
+
+        <div class="form-row">
+   <label for="card-element">
+     Credit or debit card
+   </label>
+   <div id="card-element">
+     <!-- a Stripe Element will be inserted here. -->
+   </div>
         </div>
-        <div class="modal-footer">
+   <!-- Used to display form errors -->
+   <div id="card-errors" role="alert"></div>
+ </div>
+
+ <button>Submit Payment</button>
+
+
+        <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary reservation" >reserve</button>
-        </div>
+          <button type="submit" class="btn btn-primary reservation" >Proceed to Payment</button>
+        </div> -->
           <% end %>
       </div>
     </div>
   </div>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+           data-description="A month's subscription"
+           data-amount="500"
+           data-locale="auto">
+           </script>
+
+
+
 
 
 <script type="text/javascript" >
