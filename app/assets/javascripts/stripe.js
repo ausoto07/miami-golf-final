@@ -1,5 +1,4 @@
 
-
 // Create a token or display an error when the form is submitted.
 window.onload = function() {
   // Create a Stripe client
