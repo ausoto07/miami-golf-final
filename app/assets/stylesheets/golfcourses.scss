@@ -1,4 +1,6 @@
-.background{background-image:url("golf.jpg")}
+.background{
+  background-image:url("golf.jpg");
+}
 
 .page-header{
   align-items: center;
@@ -104,7 +106,6 @@ text-align: left;
 }
 
 #container{
-
   margin-top: -40px;
   margin-bottom: 20px;
 }
