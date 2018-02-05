@@ -1,12 +1,12 @@
-h1{
-  text-align: center;
-}
+.background{background-image:url("golf.jpg")}
 
-// .container {
-//   flex-direction: row;
-//   display: flex;
-//   width: 70%;
-// }
+.page-header{
+  align-items: center;
+  text-align: center;
+  color: #D4AF37;
+  background-color: white;
+  font-size: 500%;
+}
 
 @keyframes responsive {
   0%, 100% {
@@ -16,39 +16,95 @@ h1{
     width: 110px;
   }
 }
-
 #map{
   // max-width: 50%;
   // height: 50%;
   height: 400px;
 }
-
-
 #usersdate{
-font-size: 200%;
-}
+font-size: 140%;
 
+}
 .search_tee_time_date{
 width:100%;
 height: 100%;
 font-size: 180%;
 text-align: center;
-border: solid;
 }
-
-
 .table_container{
 // width: 60%;
 text-align: center;
 margin-top: 20px;
 }
-.table{
-  // display: inline-block;
-
-
-}
 
 .table_header{
-
   text-align: center;
+}
+.extra_styling_form{
+text-align: center;
+align-items: center;
+width: 100%;
+}
+
+.form_select_date_fields{
+font-size: 150%;
+  margin-top: 60px;
+  text-align: left;
+  color: #D4AF37;
+  background-color: white;
+}
+
+.form_select_date_fields label{
+font-size: 130%;
+overflow: hidden;
+white-space: nowrap;
+color: #D4AF37;
+}
+.dropdown{
+  background-color: blue;
+  color: #D4AF37;
+}
+
+#search input{
+background: none;
+border: none;
+font-size: 200%;
+color: #D4AF37;
+}
+
+td{
+  color: #D4AF37;
+}
+
+th{
+  color: #D4AF37;
+  background-color: white;
+}
+tbody{
+  background-color: white;
+  border-radius: 20px;
+}
+.btn.btn-primary.book{
+  background-color: white;
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+.row.extra_styling_form{
+  background-color: white;
+  border-radius: 40px;
+}
+
+.weatherwidget-io{
+  margin-top: 0px;
+}
+
+.col-md-4.date_picker{
+text-align: left;
+}
+
+#container{
+
+  margin-top: -40px;
+  margin-bottom: 20px;
 }

@@ -1,3 +1,6 @@
+<div class="background">
+  <h1 class="page-header">Miami Golf</h1> <br>
+
 <div id="container">
 
   <!-- Code generated at https://WeatherWidget.io -->
@@ -8,14 +11,12 @@
 </div>
 
 
-
-  <h1>MiamiGolf</h1> <br>
 <!-- map google  -->
 <div class="container">
-  <div class="row">
+  <div class="row backgorund">
     <div class="col-md-8 col-md-offset-2">
 
-      <div class="row">
+      <div class="row extra_styling_form">
         <div id="map" class="col-md-7">
           <script type="text/javascript">
             $(function () {
@@ -25,11 +26,11 @@
             });
           </script>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 date_picker">
           <%= form_tag(root_path, method: "get") do %>
-            <%= label_tag(:q, "Select the date you want to play") %> <br><br>
-            <%= date_field_tag(:usersdate) %> <br><br><br>
-            <%= submit_tag("Search") %>
+        <p class="form_select_date_fields" id="string_date"><%= label_tag(:q, "Select date") %></p>
+        <p class="form_select_date_fields"><%= date_field_tag(:usersdate) %> </p>
+        <p class="btn btn-primary book form_select_date_fields" id="search"><%= submit_tag("Search")%> </p>
           <% end %>
         </div>
       </div><!-- .row for map and form -->
@@ -46,7 +47,7 @@
     <div class="col-md-8 col-md-offset-2">
       <table class="table table-hover">
         <thead>
-          <th class="table_header">Locationa</th>
+          <th class="table_header">Location</th>
           <th class="table_header">Teetimes</th>
           <th class="table_header">Reserve</th>
         </thead>
@@ -57,7 +58,7 @@
                 <%= "#{course['courseName']}"%>
               </td>
               <td>
-                <select>
+                <select class="btn btn-primary book">
                   <% course["teeTimes"].each do |tee| %>
                     <option class='optionsss'>
                       <%= " Tee time #{tee['teeTime']}"%>
@@ -139,3 +140,4 @@
 
 });
 </script>
+</div>
