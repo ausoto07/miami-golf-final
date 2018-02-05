@@ -1,0 +1,19 @@
+<!-- Old Weather API - WeatherApi -->
+<!-- <table>
+  <tr>
+    <th>Date</th>
+    <th>Description</th>
+    <th>Farenheit</th>
+    <th>Humidity</th>
+    <th>Wind Speed</th>
+  </tr>
+  <% #@request_weather_forecast.each do |forecast| %>
+    <tr>
+    <td><%= #Time.at(forecast["dt"]) ""%></td>
+    <td><%= #forecast["weather"][0]["description"]"" %></td>
+    <td><%= #forecast["main"]["temp"]"" %></td>
+    <td><%= #forecast["main"]["humidity"] ""%></td>
+    <td><%= #forecast["wind"]["speed"]# %></td>
+    </tr>
+  <% #end #%>
+  </table> -->
