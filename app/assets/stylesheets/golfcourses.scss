@@ -2,11 +2,11 @@ h1{
   text-align: center;
 }
 
-.container {
-  flex-direction: row;
-  display: flex;
-  width: 70%;
-}
+// .container {
+//   flex-direction: row;
+//   display: flex;
+//   width: 70%;
+// }
 
 @keyframes responsive {
   0%, 100% {
@@ -18,11 +18,14 @@ h1{
 }
 
 #map{
-  max-width: 58%;
+  // max-width: 50%;
+  // height: 50%;
+  height: 400px;
 }
 
+
 #usersdate{
-font-size: 150%;
+font-size: 200%;
 }
 
 .search_tee_time_date{

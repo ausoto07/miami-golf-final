@@ -12,25 +12,30 @@
   <h1>MiamiGolf</h1> <br>
 <!-- map google  -->
 <div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
 
-  <div id="map">
-      <script type="text/javascript">
-          $(function () {
-              $('#datetimepicker4').datetimepicker({
-                  viewMode: 'years'
-              });
-          });
-      </script>
-  </div>
+      <div class="row">
+        <div id="map" class="col-md-7">
+          <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker4').datetimepicker({
+                    viewMode: 'years'
+                });
+            });
+          </script>
+        </div>
+        <div class="col-md-4">
+          <%= form_tag(root_path, method: "get") do %>
+            <%= label_tag(:q, "Select the date you want to play") %> <br><br>
+            <%= date_field_tag(:usersdate) %> <br><br><br>
+            <%= submit_tag("Search") %>
+          <% end %>
+        </div>
+      </div><!-- .row for map and form -->
 
-  <%= form_tag(root_path, method: "get") do %>
-    <div class="search_tee_time_date"> <br>
-      <%= label_tag(:q, "Select the date you want to play") %> <br><br>
-      <%= date_field_tag(:usersdate) %> <br><br><br>
-      <%= submit_tag("Search") %>
     </div>
-  <% end %>
-
+  </div>
 </div>
 
 
