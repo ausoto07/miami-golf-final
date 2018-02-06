@@ -16,3 +16,15 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+$(function(){
+    $('#CourseInformationTable').DataTable({
+      "columnDefs": [
+        { "orderable": false, "targets": -1 },
+        { "orderable": false, "targets": -2 }
+      ],
+      "lengthChange": false
+});
+});
+$(document).ready( function () {
+  $('#usersdate').val(window.location.href.match(/\e=(.*)\&/)[1])
+} );

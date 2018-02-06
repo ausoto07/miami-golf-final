@@ -1,13 +1,11 @@
-<div class="background">
-  <h1 class="page-header">Miami Golf</h1> <br>
-
-  <div id="container">
-    <!-- Code generated at https://WeatherWidget.io -->
-  <a class="weatherwidget-io" href="https://forecast7.com/en/25d76n80d19/miami/" data-label_1="Miami" data-label_2="WEATHER" data-theme="orange" >Miami WEATHER</a>
-  <script>
-  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://weatherwidget.io/js/widget.min.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","weatherwidget-io-js");
-  </script>
-  </div>
+<div id="container" style="padding-top: 40px;">
+  <!-- Code generated at https://WeatherWidget.io -->
+<a class="weatherwidget-io" href="https://forecast7.com/en/25d76n80d19/miami/?unit=us" data-label_1="Miami" data-label_2="Golf" data-theme="orange" ></a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://weatherwidget.io/js/widget.min.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","weatherwidget-io-js");
+</script>
+</div>
+<div class="background" style="margin-top: -20px; height: 700px;">
 
 
 <!-- map google  -->
@@ -39,70 +37,33 @@
 </div>
 
 
-
-
-<div class="table_container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <table class="table table-hover">
-        <thead>
-          <th class="table_header">Location</th>
-          <th class="table_header">Teetimes</th>
-          <th class="table_header">Reserve</th>
-        </thead>
-        <tbody>
-          <% @request_tee_times["data"].each do |course| %>
-            <tr>
-              <td>
-                <%= "#{course['courseName']}"%>
-              </td>
-              <td>
-                <select class="btn btn-primary book">
-                  <% course["teeTimes"].each do |tee| %>
-                    <option class='optionsss'>
-                      <%= " Tee time #{tee['teeTime']}"%>
-                      <%= tee["purchase"]["price"]%> $
-
-                    </option>
-                  <%end%>
-                </select>
-              </td>
-              <td>
-                <button type="button" class="btn btn-primary book" data-toggle="modal" data-target="#exampleModal" course-id="<%=course['courseId']%>">Book
-                </button>
-              </td>
-            </tr>
-          <%end%>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+
+          <h1 class="modal-title" id="exampleModalLabel">Purchase TeeTime</h1>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <%= form_tag("/book", method: "post", id:"booking-form") do %>
-            <%= label_tag(:q, "Name:") %>
+            <%= label_tag(:q, "Name:     ") %>
             <%= text_field_tag(:name) %><br>
-            <%= label_tag(:q, "Email:") %>
+            <%= label_tag(:q, "Email:    ") %>
             <%= text_field_tag(:email) %><br>
             <%= label_tag(:q, "Telephone:") %>
-            <%= text_field_tag(:telephone) %>
-            <%= label_tag(:q, "Teetime:") %>
-            <%= text_field_tag(:teetime) %>
+            <%= text_field_tag(:telephone) %><br>
+
             <%= hidden_field_tag(:hidden_golfcourse_id) %>
             <%# submit_tag("Search") %>
+
+
         <div class="form-row">
    <label for="card-element">
-     Credit or debit card
+
    </label>
    <div id="card-element">
      <!-- a Stripe Element will be inserted here. -->
@@ -112,7 +73,7 @@
    <div id="card-errors" role="alert"></div>
  </div>
 
- <button>Submit Payment</button>
+ <button class="submitPayment btn btn-primary book">Submit Payment</button>
 
 
         <!-- <div class="modal-footer">
@@ -139,4 +100,41 @@
 
 });
 </script>
+</div>
+<div class="table_container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <table class="table table-hover" id="CourseInformationTable">
+        <thead>
+          <th class="table_header">Location</th>
+          <th class="table_header">Tee Times</th>
+          <th class="table_header"></th>
+        </thead>
+        <tbody>
+          <% @request_tee_times["data"].each do |course| %>
+            <tr>
+              <td>
+                <%= "#{course['courseName']}"%>
+              </td>
+              <td>
+                <select class="btn btn-primary book">
+                  <% course["teeTimes"].each do |tee| %>
+                    <option class='optionsss'>
+                      <%= "#{tee['teeTime']}"%>
+                      <%= tee["purchase"]["price"]%> $
+
+                    </option>
+                  <%end%>
+                </select>
+              </td>
+              <td>
+                <button type="button" class="btn btn-primary book" data-toggle="modal" data-target="#exampleModal" course-id="<%=course['courseId']%>">Book
+                </button>
+              </td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

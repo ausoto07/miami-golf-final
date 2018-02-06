@@ -91,7 +91,25 @@ tbody{
   border-color: #D4AF37;
   color: #D4AF37;
 }
-
+#CourseInformationTable_filter {
+  color: #D4AF37;
+}
+#CourseInformationTable_filter input {
+  color: #D4AF37;
+}
+li.paginate_button.active a {
+  background-color: #D4AF37 !important;
+  border-color: #D4AF37 !important;
+}
+li.paginate_button:not(.active) a {
+  color: #D4AF37 !important;
+}
+.pagination>li>a, .pagination>li>span {
+  border: 1px solid #D4AF37 !important;
+}
+#CourseInformationTable_info {
+  color: #D4AF37 !important;
+}
 .row.extra_styling_form{
   background-color: white;
   border-radius: 40px;
